@@ -1299,7 +1299,8 @@ class NodeGraph(QtCore.QObject):
                 for n in self.selected_nodes():
                     n.set_property('selected', False, push_undo=False)
                 undo_cmd.redo()
-
+            node: BaseNode
+            node.loaded()
             return node
 
         raise NodeCreationError('Can\'t find node: "{}"'.format(node_type))
