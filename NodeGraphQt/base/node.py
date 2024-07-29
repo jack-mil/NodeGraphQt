@@ -395,7 +395,7 @@ class NodeObject(object):
         """
 
         # prevent signals from causing an infinite loop.
-        if self.get_property(name) == value:
+        if self.get_property(name) is value:
             return
 
         # prevent nodes from have the same name.
