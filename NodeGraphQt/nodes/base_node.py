@@ -870,3 +870,9 @@ class BaseNode(NodeObject):
             out_port (NodeGraphQt.Port): output port that was disconnected.
         """
         return
+
+    def loaded(self):
+        """
+        This method is run after deserializing the Node. Useful for reconstructing custom widgets from properties.
+        """
+        pass
