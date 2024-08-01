@@ -82,8 +82,8 @@ class BaseNode(NodeObject):
             value (object): property data (python built in types).
             push_undo (bool): register the command to the undo stack. (default: True)
         """
-        # prevent signals from causing a infinite loop.
-        if self.get_property(name) == value:
+        # prevent signals from causing an infinite loop.
+        if self.get_property(name) is value:
             return
 
         if name == 'visible':
@@ -870,3 +870,9 @@ class BaseNode(NodeObject):
             out_port (NodeGraphQt.Port): output port that was disconnected.
         """
         return
+
+    def loaded(self):
+        """
+        This method is run after deserializing the Node. Useful for reconstructing custom widgets from properties.
+        """
+        pass

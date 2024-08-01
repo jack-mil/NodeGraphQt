@@ -37,7 +37,7 @@ class PropertyChangedCmd(QtWidgets.QUndoCommand):
         if hasattr(view, 'widgets') and name in view.widgets.keys():
             # check if previous value is identical to current value,
             # prevent signals from causing an infinite loop.
-            if view.widgets[name].get_value() != value:
+            if view.widgets[name].get_value() is not value:
                 view.widgets[name].set_value(value)
 
         # view properties.
@@ -56,7 +56,7 @@ class PropertyChangedCmd(QtWidgets.QUndoCommand):
             self.set_node_property(self.name, self.old_val)
 
     def redo(self):
-        if self.old_val != self.new_val:
+        if self.old_val is not self.new_val:
             self.set_node_property(self.name, self.new_val)
 
 
@@ -495,6 +495,6 @@ class PortVisibleCmd(QtWidgets.QUndoCommand):
 
     def undo(self):
         self.set_visible(not self.visible)
-        
+
     def redo(self):
         self.set_visible(self.visible)
